@@ -107,18 +107,22 @@ class ActionProvider {
     this.set_chat_botstate(message)
   }
 
-  faqhandler = () => {
-    const message = this.createChatBotMessage("Sign Up Help");
-    const message1 = this.createChatBotMessage("Sign Up can be done in our Bot system")
-    const message2 = this.createChatBotMessage ("1. Click our friendly blue chatbot bottom right")
-    const message3 = this.createChatBotMessage("2. Follow the instructions")
-    const message4 = this.createChatBotMessage("3. Only one account per family * All accounts are keeping as private privacy")
-    const message5 = this.createChatBotMessage("4. Type menu to start")
+  faqhandler = async () => {
+    const response = await fetch("http://localhost:7777/nikita/faq", {method: 'GET'})
+    const data = await response.json()
+
+    const message = this.createChatBotMessage(data.topic);
+    const message1 = this.createChatBotMessage(data.line1)
+    const message2 = this.createChatBotMessage (data.line2)
+    const message3 = this.createChatBotMessage(data.line3)
+    const message4 = this.createChatBotMessage(data.line4)
+    const message5 = this.createChatBotMessage(data.line5)
     this.set_chat_botstate(message)
     this.set_chat_botstate(message1)
     this.set_chat_botstate(message2)
     this.set_chat_botstate(message3)
     this.set_chat_botstate(message4)
+    this.set_chat_botstate(message5)
   }
 
 
