@@ -110,6 +110,7 @@ class ActionProvider {
   faqhandler = async () => {
     const response = await fetch("http://localhost:7777/nikita/faq", {method: 'GET'})
     const data = await response.json()
+    console.log(data);
 
     const message = this.createChatBotMessage(data.topic);
     const message1 = this.createChatBotMessage(data.line1)
